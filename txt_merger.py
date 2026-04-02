@@ -11,6 +11,7 @@ print("Merge two txt files to one.\n")
 
 # ---- 2. 파일 선택 ----
 print("Choose the first file.")
+
 file1_path = filedialog.askopenfilename(
     title="First",
     filetypes=[("Text Files", "*.txt"), ("All Files", "*.*")]
@@ -21,6 +22,7 @@ if not file1_path:
     exit()
 
 print("Choose the second file.")
+
 file2_path = filedialog.askopenfilename(
     title="Second",
     filetypes=[("Text Files", "*.txt"), ("All Files", "*.*")]
