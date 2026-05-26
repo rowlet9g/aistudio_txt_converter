@@ -52,6 +52,8 @@ example.json -> example_converted.txt
 
 저장 인코딩은 `utf-8-sig`입니다.
 
+txt 파일을 새로운 session의 대화에 넣고 text input 시, input freeze 없이 대화를 이어 나갈 수 있습니다.
+
 ### 2. TXT 파일 2개 합치기
 
 ```powershell
@@ -76,12 +78,6 @@ python txt_merger.py
 python pdf_reader.py
 ```
 
-`pdf_reader.py`는 현재 다음 경로의 PDF를 읽도록 코드에 고정되어 있습니다.
-
-```text
-C:\Users\yount\Downloads\flutter_app_ffmpeg_issues.pdf
-```
-
 동작 방식:
 
 - `PyPDF2.PdfReader`로 PDF를 엽니다.
@@ -97,10 +93,3 @@ C:\Users\yount\Downloads\flutter_app_ffmpeg_issues.pdf
 | `converter.py` | 원본 JSON과 같은 폴더 | `{원본파일명}_converted.txt` |
 | `txt_merger.py` | 첫 번째 TXT 파일과 같은 폴더 | `merged.txt` |
 | `pdf_reader.py` | 파일 저장 없음 | 콘솔 출력만 수행 |
-
-## 개선하면 좋은 점
-
-- `pdf_reader.py`도 `tkinter` 파일 선택 창을 사용하도록 변경
-- PDF 추출 결과를 TXT 파일로 저장하는 기능 추가
-- `txt_merger.py`에서 저장 파일명을 사용자가 직접 고를 수 있게 변경
-- `converter.py`에서 사용자 태그와 AI 태그를 실행 옵션으로 지정하는 기능 추가
