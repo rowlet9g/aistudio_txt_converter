@@ -2,7 +2,7 @@ import json
 import tkinter as tk
 
 from pathlib import Path
-from tkinter import filedialog
+from tkinter import filedialog, simpledialog
 
 # ---- 1. 변환 함수 ( byte decoding 제거, dictionary 처리 ) ----
 def convert_json(data: dict, tag_user='[User]', tag_ai='[AI]'):
@@ -27,6 +27,18 @@ def convert_json(data: dict, tag_user='[User]', tag_ai='[AI]'):
 root = tk.Tk()
 root.withdraw() # 메인 창 숨기기
 
+tag_user = simpledialog.askstring(
+    'User Tag',
+    'Choose user tag.',
+    initialvalue='[User]'
+) or '[User]'
+
+tag_ai = simpledialog.askstring(
+    'AI Tag',
+    'Choose AI tag.',
+    initialvalue='[AI]'
+) or '[AI]'
+
 file_paths = filedialog.askopenfilenames(
     title = 'Choose Context JSON File to Convert.',
     filetypes= [('JSON Files', '*.json'), ('All Files', '*.*')]
@@ -42,7 +54,7 @@ for path in file_paths:
     with open(path, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
-    converted = convert_json(data)
+    converted = convert_json(data, tag_user=tag_user, tag_ai=tag_ai)
 
     # Save into Same Directory as the Source File
     og_path = Path(path)

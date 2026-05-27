@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 import tkinter as tk
 from tkinter import filedialog
@@ -51,9 +50,19 @@ try:
     # 두 파일 내용 합치기 (중간에 줄바꿈 추가)
     merged_content = content1.strip() + '\n\n' + content2.strip() + '\n'
 
-    # 저장할 경로 지정 (첫 번째 파일이 있는 폴더에 저장)
+    # 저장할 경로 지정
     parent_dir = Path(file1_path).parent
-    merged_filename = parent_dir / 'merged.txt'
+    merged_filename = filedialog.asksaveasfilename(
+        title="Save merged txt file as",
+        initialdir=str(parent_dir),
+        initialfile="merged.txt",
+        defaultextension=".txt",
+        filetypes=[("Text Files", "*.txt"), ("All Files", "*.*")]
+    )
+
+    if not merged_filename:
+        print("Save path is not selected. Exit the process.")
+        exit()
 
     # 합쳐진 파일 쓰기 (한글 깨짐 방지를 위해 utf-8-sig 사용)
     with open(merged_filename, 'w', encoding='utf-8-sig') as f:
